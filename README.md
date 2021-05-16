@@ -139,7 +139,7 @@ The second example may be clearer, but they both perform the same task.
 In the first case, if the new value of `(backIndex + 1)` is equal to
 the array `size`, the remainder of dividing by `size` will be 0, which
 will wrap the `backIndex` back around to 0 as desired.   Using modulo
-(remainder) arithemetic for circular buffer indexing is common and you will
+(remainder) arithmetic for circular buffer indexing is common and you will
 see it done this way often if you look at other code using an array
 as a circular buffer.
 
@@ -256,14 +256,337 @@ you have completed the following setup steps.
 
 ## Task 1: Implement the `AQueue` `front()` Accessor Method
 
+As usual make sure that you have created Task 1 on your
+GitHub repository for this assignment and are ready to create
+a new Pull request for this assignment.
+
+There is a test case in `assg-tests-AQueue.cpp` for task 1.
+It only does a few simple tests of the `front()` member method, but as
+usual you should uncomment this test case first, and add in the
+function prototype and a stub method to check that you can compile and
+run the tests before proceeding with the implementation.
+In addition, the declaration of the `front()` method is commented out
+of the base class `Queue.hpp` header file.  You should uncomment that
+as well before proceeding with implementing this method.
+
+The `front()` accessor method is basically the same as the `top()` method of
+our `Stack` class from a previous assignment.  Though in this case, the
+`AQueue` class has an explicit member variable named `frontIndex` that
+is the index of the front item of the queue in the `values` array.
+
+You should implement this function by simply returning the
+front item of template type `T` from the queue.  But as usual for
+these accessor methods, you should first check if the queue is
+empty (reusing the `isEmpty()` method), and throw an exception
+of type `QueueEmptyException` if an attempt is made to peek
+at the front item of an empty queue.
+
+Once you are satisfied with your work and can pass the tests
+for the task 1, commit your work and push it to the `feedback`
+branch of your GitHub repository for this assignment.
+
+	
 ## Task 2: Implement the `AQueue` `dequeue()` Accessor Method
+
+Start task 2 by uncommenting the next unit test in the `assg-tests-AQueue.cpp`
+and creating the function declaration and a stub function to make sure the
+tests run.  Also don't forget to uncomment the `dequeue()` declaration
+in the `Queue.hpp` base class header before beginning implementation.
+
+The `dequeue()` method should remove the item that is currently at
+the front of the queue, similar to the `pop()` and `removeFront()` methods
+you have seen in previous data types.  As usual with removing
+items from data structures, fist check if the queue is empty before doing
+the dequeue, and if it is throw a `QueueEmptyException` to let the
+caller know something is amiss.
+
+There is one wrinkle with the `dequeue()` method.  You are again using
+the `frontIndex` member variable to determine the index of the current
+value at the front of the queue.  To dequeue the front value, you simply
+need to increment the `frontIndex` by one.  But as discussed in the
+introduction above, we are treating the `values` array as a circular
+buffer.  So there is the possibility that, after incrementing the front
+index, you need to wrap back around to index 0 of the circular buffer.
+You can do this with an explicit test using an `if` statement, or using
+modulo arithmetic as described above.  Make sure that you are
+testing the `allocationSize` of the array, not the queue `size`.
+These are different.  The `size` of the queue is the actual number
+of items currently on the queue, while the `allocationSize` is the
+amount of memory currently allocated for the `values` array.
+
+Once you have correctly incremented the `frontIndex`, don't forget
+that your queue has shrunk by 1 item, so you also need to update
+the `size` member variable appropriately.
+
+Once you are satisfied with your work and can pass the tests for the
+second test case, commit your work and push your commit to your
+GitHub assignment repository `feedback` branch.
 
 ## Task 3: Implement the `AQueue` `enqueue()` Accessor Method
 
+Do the same as previous 2 tasks to start task 3, uncomment the next
+test case in `assg-tests-AQueue.cpp`, add in the declaration
+and stub function for the `enqueue()` method, and don't forget to
+also uncomment the `enqueue()` virtual declaration in the `Queue.hpp`
+base class header file.
+
+The `enqueue()` method will be similar to the `push()` and 
+`insertBack()` methods from previous assignment, though again one
+difference is that we now have an explicit `backIndex` member variable
+that indicates the current index of the last or back item on the queue.
+
+First, before trying to insert the new value on the back of the queue, you
+need to ensure there is enough room in the `values` array to hold another
+value.  As with previous methods and classes, a `growQueueIfNeeded()`
+private member method has already been provided for your `AQueue` class.
+You should start by calling this method.  After this function returns, you
+will be sure there is room to put the new value into the
+array at the back of the queue.
+
+The `backIndex` should always point to the index of the actual current
+back item.  So to insert a new value on the back of the queue, you must
+first increment the `backIndex`.  As with the `dequeue()` method, after
+incrementing this value, you have to check that you have not wrapped
+around the circular buffer first before proceeding, and make `backIndex`
+point to index 0 if you have indeed wrapped around the buffer.
+
+Once you have incremented the `backIndex`, you can gen safely copy the
+value given to the `enqueue()` method into the `values` array.  Also don't
+forget that you array has now increased in `size` by 1.
+
+Once you are satisfied with your work and can pass the tests for the
+third test case, there are some additional tests in the `assg-tests-AQueue.cpp`
+testing file.  You should uncomment the additional 2 tests cases as well and
+ensure that your new methods can pass all of the more extensive testing of the
+`AQueue` class.  Once you are passing all of the tests, commit your work
+and push it to the `feedback` branch of your repository.
+
 ## Task 4: Implement the `APriorityQueue` `enqueue()` Accessor Method
+
+The first 3 tasks, to add in the missing member functions of the `AQueue` class,
+were meant to be warm-up exercises, and hopefully were not too tough to figure out.
+The next 2 tasks will be a bit more challenging.  
+
+For this task you will be adding a new method to the `APriorityQueue`
+class.  The purpose of the priority queue is discussed a bit above in
+the introduction for the assignment.  To implement an array based
+priority queue, you need to inherit from the `AQueue` class, and just
+override the `enqueue()` method so that new values are enqueued onto
+the queue in sorted order, instead of simply being put to the back of
+the queue.
+
+The header file and implementation file have already been given to you for
+the `APriorityQueue.[hpp|cpp]` class.  You need to add in a declaration
+for the `enqueue()` method in the header file first.  This member function
+will have the same signature as for the `AQueue` class you are inheriting from,
+so you can simply copy the declaration from that header into the header for
+the priority queue version.
+
+Likewise it is suggested that you start by simply copying your full
+`enqueue()` implementation that you just finished from the
+`AQueue.cpp` implementation file into the `APriorityQueue.cpp`
+implementation.  Your implementation of enqueue to create a priority
+based queue will start off the same way, we simply need to modify its
+behavior to search for and insert any new values into their correct
+sorted position on the queue.  Though don't forget now that your
+`enqueue()` is a member of the `APriorityQueue<T>::` class, so you do
+have to make a small change to the function signature in the
+implementation file here.
+
+Once you have added these to the `APriorityQueue` header and
+implementation file, uncomment the test cases in the
+`assg-tests-APriorityQueue.cpp` file.  There are three test cases that
+test an `APriorityQueue` with integers, with strings and on a `Job`
+user defined class.  You can uncomment both of these, and make sure
+your project compiles and runs the tests.  All of the tests you just
+uncommented should run, but of course, since you have not yet modified
+the `enqueue()` function to insert items by their priority, some of
+them will be failing.
+
+You should leave in all of the code from your `AQueue` `enqueue()` method,
+as we want to start by inserting the new value to the back of the
+queue.  There are two basic approaches you can then take to position
+the new value from the end to its correct location:
+
+1. Use a reverse bubble sort pass, e.g. iterating from the back of the queue
+   towards the front, compare each value to the previous value, and if they
+   are out of order swap them.  Though it doesn't hurt to do this all of the
+   way till the front, you can stop bubble/swapping as soon as you find two
+   items that are not out of order.
+   
+or
+
+2. Like an insertion sort.  Again iterating from the back of the queue towards
+   the front, shift up items by 1 location.  You perform the shifting up until
+   you detect an index with a greater or equal priority to the new value
+   being placed in the queue.  Once you find this location, you have just
+   shifted the item with a smaller priority up by 1 location, leaving a hole
+   in the array, where you should insert the new value.
+   
+For approach 2, you do need to increase the size of the queue by incrementing
+the `backIndex`, but you don't really need to start by placing the new value into
+this back location, since the first shift will simply overwrite the value, and you
+will be inserting the value into the whole/position you determine as the location
+the value should end up at.
+
+Both of these approaches can be made to work.  Performing a shift and insertion
+can be a bit more efficient, since it takes more work to swap values than to simply
+shift them (3 copies vs. 1 copy).  But you can attempt either that seems easiest
+to you to implement.
+
+Here are a couple of general hints and ideas:
+
+1. Iterating backwards through the circular buffer is tricky.  You can start by
+   defining something like:
+   ```c++
+   int currentIndex = backIndex;
+   int previousIndex = currentIndex - 1;
+   ```
+   Now you can check and swap the current with the previous, or simply shift up
+   the previous to the current, if they are out of order.  However, be aware, that
+   whenever you decrement any index you have into the circular buffer, you have to
+   take into account that the index could have been 0, so when you decremented, your
+   previous index here could be -1.  So every time after you decrement an index into
+   your circular buffer, you have to take care of potentially wrapping it, e.g.
+   ```c++
+   if (previousIndex < 0)
+   {
+       previousIndex = allocationSize - 1;
+   }
+   ```
+   Notice that the correct index to wrap back around the circular
+   buffer is `allocationSize - 1`.  The array of `values` always has
+   `allocationSize` elements in the array.  So the last index of this
+   array is at `allocationSize - 1`. Also note that the modulo
+   operator/trick does not work in C/C++.  Unfortunately, the
+   `%` operator actually performs the remainder function in C/C++, so
+   if you do `-1 % 5` you will get a result of `-1`.  The true 
+   modulo operator should return a value from 0 to 4 for a modulus
+   of 5.  Many other languages (like Python, Scheme, Haskell) actually
+   will do this correctly, or have separate operators/functions for
+   remainder and true modulo.  You can explicitly test using an
+   `if` condition, as shown above.  Or you should find that there
+   is a member method named `modulo()` in the `APriorityClass` which
+   you could use to calculate the modulo.
+2. You need to be careful when testing that you stop when you find
+   a value that is of greater priority or of **EQUAL** priority.  We test
+   for this a bit in the test cases.  You can't really tell when
+   managing `int` or `string` values if this is being done correctly.
+   But the idea is as follows.  If two items are of equal priority, then
+   you want them to end up being enqueued by their order of arrival (like
+   in a regular queue).  Thus you have to make sure that you do not end up
+   inserting in front of any equal priority items, new items should end up
+   in back of any items of equal priority.
+
+**NOTE**:  We ran into this issue before.  `APriorityQueue` inherits from
+`PriorityQueue`.  All of the member variables you will be using in your
+`enqueue()` method, like `frontIndex`, `backIndex`, `allocationSize`,
+etc. are all defined in either the `AQueue` class, or even in the original
+`Queue` abstract base class.  Usually this is not a problem, but because of
+some technical cruftiness of C++ template implementations, this means if you
+want to refer to a member variable defined in a class you inherit from, you
+need to reference it either using `this`:
+
+```c++
+this->frontIndex--;
+```
+
+or you can prepend a namespace qualifier like the following:
+
+```c++
+AQueue<T>::frontIndex--;
+```
+   
+You don't normally have to do this for regular classes, but because of some
+cruftiness with templates in C++, the C++ compiler can't figure out a reference
+to a member variable name is in a parent class without one or the other of these
+qualifiers.
+
+However, if you look in the `APriorityQueue.cpp` implementation file, you will see
+the following preprocessor define macros:
+
+```c++
+#define size AQueue<T>::size
+#define allocationSize AQueue<T>::allocationSize
+#define frontIndex AQueue<T>::frontIndex
+#define backIndex AQueue<T>::backIndex
+#define values AQueue<T>::values
+#define growQueueIfNeeded() AQueue<T>::growQueueIfNeeded()
+```
+
+This is a little bit of a trick here to make the code look a bit less crufty.  But
+for example the `#define` for `frontIndex` means that whenever you simply use
+`frontIndex` the C preprocessor will replace that string with the string with
+a namespace qualifier.  So simply put, this means that if you rely on these
+defines, you can write your references to the member variables from
+the `AQueue` parent class without qualifying them with `this` or the parent
+class namespace, and the C preprocessor will fix it for you so that the code
+still compiles.  This should make your code a bit less crufty to write.
+
 
 ## Task 5: Implement the `LPriorityQueue` `enqueue()` Accessor Method
 
+For your final task, we will be switching gears back to the linked list
+implementation of our `Queue` abstraction.  If you haven't looked at the
+linked list based implementation, you might want to look over it now.
+For the linked list queue, we end up with a very similar implementation to
+the `List` class we had in a previous assignment.  It is most natural
+to treat the end of the list as the back of the queue, which is
+kept track of by the `backNode` member variable.  And likewise the
+beginning of the list works as the front of the queue, and the `frontNode`
+member variable points to this node.  By enqueueing on the front
+of the linked list and dequeueing from the back, both operations are
+\BigO{n} as we discussed a bit in the introduction.
+
+To begin task 5, do similar steps as in task 4.  Copy the declaration of
+the `enqueue()` method from the `LQueue.hpp` header file, and the
+implementation of `enqueue()` from `LQueue.cpp`.  Also go ahead and uncomment
+all of the tests in `assg-tests-LPriorityQueue.cpp`.  The project should
+compile and run like in task 4, but since the `enqueue()` method is not
+keeping items sorted by priority, some of the tests will be failing.
+
+The approach for keeping the linked list is similar as you just did for the
+array based implementation.  We cannot iterate backwards through the
+linked list, so we have to work from the front of the list.  You can
+do either of the following strategies to implement the priority
+enqueuing algorithm:
+
+1) A bubbling approach again.  Create a new node and insert it on the front
+   of the linked list.  Then compare node values with the next node value, and
+   swap the actual values if they are out of order.  Notice for this approach
+   you actually swap the values in two nodes.  You can stop once you detect
+   you no longer need to swap values because they are in the correct order.
+   
+or alternatively you can do an insertion approach
+
+2) Create a new node with the new value.  But instead of inserting on the front,
+   start a search of the list.  You want to find the position where the current
+   node is greater or equal in priority to the new value, but the next node it
+   points to is lower priority.  When you find that position, insert the new node, by
+   pointing the current position to the new node, and the new node next link
+   points to the next node with the lower priority.
+   
+For both approaches you need to be careful about inserting a node to become the new
+`frontNode`.  In fact you probably want to have 1 special case that checks
+if the list is empty, and just makes the new node the front and back and is then
+done in that case.
+
+After that, for approach 1 you can just start bubbling.  For approach 2 you
+might also want a special case that checks if the new node should become
+the new front node because it has a higher priority than any existing node, and if so
+just insert this new node to become the new front of the linked list.
+
+For the priority queue, you actually don't really need the `backNode`
+member variable, since you will not be enqueing on the back of the list, but need to
+be inserting into the list at the correct priority position.  So for either approach
+1 or 2 you don't really need to worry if the `backNode` member variable is updated
+correctly or not, though you might want to still try and consider that in case in
+future we needed to add some functionality that did need to keep track of the
+back node.
+
+Once you are satisfied with your implementation and it can pass the tests
+in the `assg-tests-LPriorityQueue.cpp` test file, commit your work and
+push it to the `feedback` branch of your assignment repository.
 
 # Assignment Submission
 
@@ -278,11 +601,11 @@ building and able to run the tests.  You may loose points for pushing
 a broken build, especially if the last build you submit is not
 properly compiling and running the tests.
 
-In this problem, up to 40 points will be given for having at least 1
+In this problem, up to 25 points will be given for having at least 1
 commit that compiles and runs the tests (and at least some attempt was
-made to work on the first task).  Thereafter 10 points are awarded for
-completing each of the 6 tasks.  However you should note that the
-autograder awards either all point for passing all tests, or no points
+made to work on the first task).  Thereafter 15 points are awarded for
+completing each of the 5 tasks.  However you should note that the
+autograder awards either all points for passing all tests, or no points
 if any test is failing for one of the tasks.  Also note that even if
 you pass all tests, when the instructor evaluates your assignment,
 they may remove points if you don't follow the requirements for

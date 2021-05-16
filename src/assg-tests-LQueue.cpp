@@ -44,7 +44,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     CHECK(empty.isEmpty() );
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
   }
-  
+
   SECTION("test enqueue, dequeue and front general functionality")
   {
     // start with emtpy queue
@@ -111,7 +111,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     // enqueue on 10 items
     for (int index = 1; index <= 10; index++)
     {
-      queue.enqueue( pow(index, 3) );
+      queue.enqueue(pow(index, 3) );
     }
     CHECK(queue.getSize() == 10);
     CHECK_FALSE(queue.isEmpty() );
@@ -123,7 +123,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     CHECK_FALSE(queue.isEmpty() );
     CHECK(queue.str() == "<queue> size: 11 front:[ 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331 ]:back");
   }
-  
+
   SECTION("test clear of queue")
   {
     // create queue of 11 values
@@ -241,7 +241,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     CHECK(empty.isEmpty() );
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
   }
-  
+
   SECTION("test enqueue, dequeue and front general functionality")
   {
     // start with empty queue
@@ -344,7 +344,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     CHECK(empty == queue);
     CHECK(queue == empty);
   }
-  
+
   SECTION("test array based constructor")
   {
     string values[] = {"alpha", "charlie", "neg-bravo", "neg-delta", "golf"};
@@ -409,4 +409,3 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     CHECK_FALSE(queue == copy);
   }
 }
-

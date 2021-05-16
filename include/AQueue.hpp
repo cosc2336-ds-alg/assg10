@@ -50,11 +50,11 @@ protected:
   /// @brief the current index of the front item of the queue in
   ///   our array of values
   int frontIndex;
-  
+
   /// @brief the current index of the back item of the queue in
   ///   our array of values
   int backIndex;
-  
+
   /// @brief For the array based implementation, the values is a fixed
   ///   array of type T values.  The values contained in the queue
   ///   will be manged from the array, and a new array allocated and
@@ -75,6 +75,7 @@ public:
 
   // accessors and information methods
   int getAllocationSize() const;
+  T front() const;
   string str() const;
   bool operator==(const Queue<T>& rhs) const;
   T& operator[](int index) const;

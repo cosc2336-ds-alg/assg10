@@ -284,5 +284,3 @@ ostream& operator<<(ostream& out, const Job& aJob)
   out << aJob.str();
   return out;
 }
-
-

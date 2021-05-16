@@ -104,4 +104,3 @@ template ostream & operator<< <string>(ostream&, const Queue<string>&);
 template class Queue<int>;
 template class Queue<string>;
 template class Queue<Job>;
-

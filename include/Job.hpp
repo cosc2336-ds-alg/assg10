@@ -33,29 +33,33 @@ using namespace std;
  * waiting, and how high of a priority the job had.  We use the
  * simple calculation of cost = priority * waitTime to calculate
  * the cost for a job once it completes.
- *
- * @var nextListId A static int variable, used to assign unique ids
- *   when processes are created, for identification purposes.
- * @var id The actual unique id assigned to a job object.
- * @var priority This jobs priority level.  Higher numbers mean higher
- *   priority jobs in this simulation.
- * @var serviceTime The amount of system time this job needs in order to
- *   complete its task.
- * @var startTime The time when the job was created.  Also the time
- *   when the job began waiting in a queue to be selected to run.
- * @var endTime The time when the job finished waiting (when it was
- *   finally selected by the system to begin execution).  The difference
- *   between endTime - startTime determines the total waitTime for this
- *   process (calculated by getWaitTime() accessor method).
  */
 class Job
 {
 private:
+  /// @brief nextListId A static int variable, used to assign unique ids
+  ///   when processes are created, for identification purposes.
   static int nextListId;
+
+  /// @brief id The actual unique id assigned to a job object.
   int id;
+
+  /// @brief priority This jobs priority level.  Higher numbers mean higher
+  ///   priority jobs in this simulation.
   int priority;
+
+  /// @brief serviceTime The amount of system time this job needs in order to
+  //    complete its task.
   int serviceTime;
+
+  /// @brief startTime The time when the job was created.  Also the time
+  ///    when the job began waiting in a queue to be selected to run.
   int startTime;
+
+  /// @brief endTime The time when the job finished waiting (when it was
+  ///    finally selected by the system to begin execution).  The difference
+  ///    between endTime - startTime determines the total waitTime for this
+  ///    process (calculated by getWaitTime() accessor method).
   int endTime;
 
 public:

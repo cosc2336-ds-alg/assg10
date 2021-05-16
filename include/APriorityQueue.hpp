@@ -22,15 +22,6 @@
 using namespace std;
 
 
-// define macros to make it easier to access the base class protected
-// members without all of the cruft
-#define size AQueue<T>::size
-#define allocationSize AQueue<T>::allocationSize
-#define frontIndex AQueue<T>::frontIndex
-#define backIndex AQueue<T>::backIndex
-#define values AQueue<T>::values
-#define growQueueIfNeeded() AQueue<T>::growQueueIfNeeded()
-
 /** @class APriorityQueue
  * @brief The APriorityQueue concrete array based implemention of the
  *   Queue interface that dequeues items in order of priority.
@@ -43,7 +34,14 @@ using namespace std;
 template <class T>
 class APriorityQueue : public AQueue<T>
 {
+private:
+  int modulo(int index, int bufferSize);
+
 public:
+  // constructors and destructors
+  APriorityQueue();                             // default constructor
+  APriorityQueue(int initSize, T initValues[]); // array based constructor
+
   // adding, accessing and removing values from the queue
 };
 

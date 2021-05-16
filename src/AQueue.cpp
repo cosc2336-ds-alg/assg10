@@ -235,7 +235,7 @@ string AQueue<T>::str() const
     {
       out << ", ";
     }
-    
+
   }
   out << "]:back";
 
