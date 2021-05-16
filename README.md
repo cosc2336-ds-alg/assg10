@@ -286,7 +286,7 @@ for the task 1, commit your work and push it to the `feedback`
 branch of your GitHub repository for this assignment.
 
 	
-## Task 2: Implement the `AQueue` `dequeue()` Accessor Method
+## Task 2: Implement the `AQueue` `dequeue()` Mutator Method
 
 Start task 2 by uncommenting the next unit test in the `assg-tests-AQueue.cpp`
 and creating the function declaration and a stub function to make sure the
@@ -322,7 +322,7 @@ Once you are satisfied with your work and can pass the tests for the
 second test case, commit your work and push your commit to your
 GitHub assignment repository `feedback` branch.
 
-## Task 3: Implement the `AQueue` `enqueue()` Accessor Method
+## Task 3: Implement the `AQueue` `enqueue()` Mutator Method
 
 Do the same as previous 2 tasks to start task 3, uncomment the next
 test case in `assg-tests-AQueue.cpp`, add in the declaration
@@ -361,7 +361,7 @@ ensure that your new methods can pass all of the more extensive testing of the
 `AQueue` class.  Once you are passing all of the tests, commit your work
 and push it to the `feedback` branch of your repository.
 
-## Task 4: Implement the `APriorityQueue` `enqueue()` Accessor Method
+## Task 4: Implement the `APriorityQueue` `enqueue()` Overridden Method
 
 The first 3 tasks, to add in the missing member functions of the `AQueue` class,
 were meant to be warm-up exercises, and hopefully were not too tough to figure out.
@@ -524,7 +524,7 @@ class namespace, and the C preprocessor will fix it for you so that the code
 still compiles.  This should make your code a bit less crufty to write.
 
 
-## Task 5: Implement the `LPriorityQueue` `enqueue()` Accessor Method
+## Task 5: Implement the `LPriorityQueue` `enqueue()` Overridden Method
 
 For your final task, we will be switching gears back to the linked list
 implementation of our `Queue` abstraction.  If you haven't looked at the
@@ -551,11 +551,12 @@ linked list, so we have to work from the front of the list.  You can
 do either of the following strategies to implement the priority
 enqueuing algorithm:
 
-1) A bubbling approach again.  Create a new node and insert it on the front
-   of the linked list.  Then compare node values with the next node value, and
-   swap the actual values if they are out of order.  Notice for this approach
-   you actually swap the values in two nodes.  You can stop once you detect
-   you no longer need to swap values because they are in the correct order.
+1) A bubbling approach again.  Create a new node and insert it on the
+   front of the linked list.  Then compare node values with the next
+   node value, and swap the actual values if they are out of order.
+   Notice for this approach you actually swap the values in two nodes,
+   not the nodes themselves.  You can stop once you detect you no
+   longer need to swap values because they are in the correct order.
    
 or alternatively you can do an insertion approach
 

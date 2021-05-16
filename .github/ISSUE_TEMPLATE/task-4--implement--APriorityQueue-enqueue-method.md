@@ -1,7 +1,7 @@
 ---
-name: 'Task 4: Implement `insertItemOnSortedStack()` Template Function'
+name: 'Task 4: Implement `APriorityQueue` `enqueue()` Overridden Method'
 about: Task 4 for Students
-title: 'Task 4: Implement `insertItemOnSortedStack()` Template Function'
+title: 'Task 4: Implement `APriorityQueue` `enqueue()` Overridden Method'
 labels: enhancement
 assignees: ''
 
@@ -9,41 +9,38 @@ assignees: ''
 
 **Description**
 
-The fourth task is to implement `insertItemOnSortedStack()` function.  This function will ultimately take an item of some type `T` as input, though initially before you turn the function into a template function, you can first get it working for concrete `int` types.  A second parameter, a `Stack<T>&`, a reference to a stack of some type `T` is also given.  This parameter must be a reference parameter.  You can initially use a `Stack<int>&` a reference to a stack of integers and then templatize the function once you get that working.
+The fourth task is to implement `enqueue()` but this time for the `APriorityQueue` class.  This task will be a bit more challenging than the previous 3.
 
-This function expects the stack to be sorted before it is called.  This function will insert the item it is given onto the stack in the correct position to keep the stack sorted.
+The `APriorityQueue` class inherts from the `AQueue` class its array based implementation, member functions and member variables.  You only need to redefine an overridden `enqueue()` method.  This method will start off the same as the `enqueue` for the `AQueue` parent class.  However, in order to implement a priority queue, you need to insert new values into the queue ordered by priority, instead of inserting new values at the back of the queue.  This requires you to do some sort of search and shifting and/or swapping, thus this method becomes O(n) to perform.
 
 
 **Suggested Solution**
 
-The pseudo-code to accomplish this insertion is as follow:
+There are two suggested possible approaches, try the one that makes the most sense to you:
 
+1. Use a reverse bubble sort pass, e.g. iterating from the back of the queue
+   towards the front, compare each value to the previous value, and if they
+   are out of order swap them.  Though it doesn't hurt to do this all of the
+   way till the front, you can stop bubble/swapping as soon as you find two
+   items that are not out of order.
    
-```
-given and inputStack
-and you create a temporaryStack for this algorithm
+or
 
-while top of inputStack > item we want to insert
-do
-    pop topItem from inputStack
-    push topItem onto the temporaryStack
-done
+2. Like an insertion sort.  Again iterating from the back of the queue towards
+   the front, shift up items by 1 location.  You perform the shifting up until
+   you detect an index with a greater or equal priority to the new value
+   being placed in the queue.  Once you find this location, you have just
+   shifted the item with a smaller priority up by 1 location, leaving a hole
+   in the array, where you should insert the new value.
 
-at this point, items on inputStack are <= to the item we want to insert
-so push item onto inputStack
+As discussed, the `%` operator doesn't work in C/C++ when decrementing a value,
+to wrap the value around in the other direction to the end of the array.  There is
+a `modulo()` function defined for you in the `APriorityQueue` class that you can
+use instead of `%`.  But feel free to use explict `if` conditions if that makes more
+sense to you.
 
-now put items back from temporaryStack to original inputStack
-while temporaryStack is not empty
-do
-    pop topItem from temporaryStack
-    push topItem onto the inputStack
-done
-```
 
 **Additional Requirements**
 
-- You must ultimately make this function a template function, that will accept a
-  item of any type `T` and a `Stack<T>&` to insert the item onto in the correct place.
-- You will need an internal temporary stack that is different from the one passed in as a parameter.  Again you need to use one of our `Stack` functions from this assignment.
 
 
