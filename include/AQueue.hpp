@@ -75,7 +75,6 @@ public:
 
   // accessors and information methods
   int getAllocationSize() const;
-  T front() const;
   string str() const;
   bool operator==(const Queue<T>& rhs) const;
   T& operator[](int index) const;
