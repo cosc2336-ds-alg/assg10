@@ -16,8 +16,8 @@
 
 
 /** Node
- * A simple Node structure type to be used to hold values
- * in our linked list implemented of the List ADT.
+ * @brief A simple Node structure type to be used to hold values
+ *   in our linked list implemented of the List ADT.
  */
 template <class T>
 struct Node

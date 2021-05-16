@@ -19,6 +19,9 @@ using namespace std;
 
 
 /** Job class
+ * @brief Example Job class that defines a job with a priority
+ *   and other attributes.
+ *
  * Class for job scheduling simulation.  A Job enters a system
  * at random intervals (determined by the JobSchedulerSimulator on
  * a random Poisson basis).  A job has a priority level and a serviceTime
