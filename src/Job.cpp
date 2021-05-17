@@ -35,7 +35,7 @@ int Job::nextListId = 1;
  */
 Job::Job()
 {
-  this->id = 0;
+  this->id = nextListId++;
   this->priority = 0;
   this->serviceTime = 0;
   this->startTime = 0;
@@ -57,10 +57,11 @@ Job::Job()
  * @param startTime The system time at which this jobs was created.  Also will be
  *   the system time this job was added to a job queue in the system and began
  *   waiting to be executed.
+ * @param id The unique identifier for the new job.
  */
-Job::Job(int priority, int serviceTime, int startTime)
+Job::Job(int priority, int serviceTime, int startTime, int id)
 {
-  this->id = nextListId++;
+  this->id = id;
   this->priority = priority;
   this->serviceTime = serviceTime;
   this->startTime = startTime;

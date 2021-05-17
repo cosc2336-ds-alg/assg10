@@ -67,7 +67,7 @@ private:
 
 public:
   Job();
-  Job(int priority, int serviceTime, int startTime);
+  Job(int priority, int serviceTime, int startTime, int id);
 
   void setEndTime(int endTime);
   int getId() const;
