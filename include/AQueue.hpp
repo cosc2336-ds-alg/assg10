@@ -19,10 +19,9 @@
  */
 #ifndef _AQUEUE_HPP_
 #define _AQUEUE_HPP_
-#include <string>
 #include "Queue.hpp"
+#include <string>
 using namespace std;
-
 
 /** @class AQueue
  * @brief The AQueue concrete array based implemention of the
@@ -35,7 +34,7 @@ using namespace std;
  * so both putting items on the end of the queue and taking items from the
  * front can be constant time O(1) operations.
  */
-template <class T>
+template<class T>
 class AQueue : public Queue<T>
 {
 protected:
@@ -82,6 +81,5 @@ public:
   // adding, accessing and removing values from the queue
   void clear();
 };
-
 
 #endif // define _AQUEUE_HPP_

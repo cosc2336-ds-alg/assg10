@@ -17,17 +17,15 @@
  * rhs T value.
  */
 #include "LPriorityQueue.hpp"
-#include "QueueException.hpp"
 #include "Job.hpp"
+#include "QueueException.hpp"
 using namespace std;
-
 
 // define macros to make it easier to access the base class protected
 // members without all of the cruft
 #define size LQueue<T>::size
 #define frontNode LQueue<T>::frontNode
 #define backNode LQueue<T>::backNode
-
 
 /**
  * @brief Cause specific instance compilations

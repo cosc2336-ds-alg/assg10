@@ -22,7 +22,6 @@
 #include "Node.hpp"
 using namespace std;
 
-
 /** @class LPriorityQueue
  * @brief The LPriorityQueue concrete linked list based implemention of the
  *   Queue interface that dequeues items in order of priority.
@@ -32,12 +31,11 @@ using namespace std;
  * we only override the enqueue() method so that we insert new values into
  * the queue in priority order.
  */
-template <class T>
+template<class T>
 class LPriorityQueue : public LQueue<T>
 {
 public:
   // adding, accessing and removing values from the queue
 };
-
 
 #endif // define _LPRIORITYQUEUE_HPP_

@@ -17,7 +17,6 @@
 
 using namespace std;
 
-
 /** Job class
  * @brief Example Job class that defines a job with a priority
  *   and other attributes.

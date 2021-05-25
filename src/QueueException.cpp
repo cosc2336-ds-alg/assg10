@@ -10,10 +10,9 @@
  * Implement all exception methods that can be generated and thrown by Queue
  * instances.
  */
-#include <string>
 #include "QueueException.hpp"
+#include <string>
 using namespace std;
-
 
 /**
  * @brief QueueEmptyException constructor
@@ -28,17 +27,13 @@ QueueEmptyException::QueueEmptyException(const string& message)
   this->message = message;
 }
 
-
 /**
  * @brief QueueEmptyException destructor
  *
  * Destructor for exceptions used for our QueueEmptyException
  * class.
  */
-QueueEmptyException::~QueueEmptyException()
-{
-}
-
+QueueEmptyException::~QueueEmptyException() {}
 
 /**
  * @brief QueueEmptyException message
@@ -54,7 +49,6 @@ const char* QueueEmptyException::what() const throw()
   return message.c_str();
 }
 
-
 /**
  * @brief QueueMemoryBoundsException constructor
  *
@@ -68,17 +62,13 @@ QueueMemoryBoundsException::QueueMemoryBoundsException(const string& message)
   this->message = message;
 }
 
-
 /**
  * @brief QueueMemoryBoundsException destructor
  *
  * Destructor for exceptions used for our QueueMemoryBoundsException
  * class.
  */
-QueueMemoryBoundsException::~QueueMemoryBoundsException()
-{
-}
-
+QueueMemoryBoundsException::~QueueMemoryBoundsException() {}
 
 /**
  * @brief QueueMemoryBoundsException message

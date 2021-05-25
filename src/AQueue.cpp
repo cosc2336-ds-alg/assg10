@@ -17,14 +17,13 @@
  * on the front of the queue, we have to now treat the array ov
  * values as a circular buffer.
  */
+#include "AQueue.hpp"
+#include "Job.hpp"
+#include "QueueException.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "AQueue.hpp"
-#include "QueueException.hpp"
-#include "Job.hpp"
 using namespace std;
-
 
 /** grow queue
  * Private member method that will increase the memory allocation if
@@ -35,7 +34,7 @@ using namespace std;
  * need to grow the queue, to ensure we have enough allocated capacity
  * to accommodate the growth.
  */
-template <class T>
+template<class T>
 void AQueue<T>::growQueueIfNeeded()
 {
   // if size is still less than what we have allocated, we still have room
@@ -83,12 +82,11 @@ void AQueue<T>::growQueueIfNeeded()
   backIndex = this->size - 1;
 }
 
-
 /** default constructor
  * Construct an empty queue.  The empty queue will have no allocated memory
  * nor any values.
  */
-template <class T>
+template<class T>
 AQueue<T>::AQueue()
 {
   // Empty queue has no values nor any allocated memory
@@ -99,7 +97,6 @@ AQueue<T>::AQueue()
   this->backIndex = -1; // for empty queue, back index is an invalid index
   values = nullptr;
 }
-
 
 /** standard constructor
  * Construct a queue of  values from a (statically) defined and
@@ -112,7 +109,7 @@ AQueue<T>::AQueue()
  * @param values The (static) array of values to use to construct
  *   this Queue values with.
  */
-template <class T>
+template<class T>
 AQueue<T>::AQueue(int size, T values[])
 {
   // dynamically allocate a block of memory on the heap large enough to copy
@@ -133,7 +130,6 @@ AQueue<T>::AQueue(int size, T values[])
   this->backIndex = this->size - 1;
 }
 
-
 /** copy constructor
  * Provide a copy constructor for the Queue class.  A copy constructor
  * will be invoked whenver you assign one instance of a Queue to another.
@@ -146,7 +142,7 @@ AQueue<T>::AQueue(int size, T values[])
  * @param queue The other Queue we are to make a copy of in this
  *   constructor.
  */
-template <class T>
+template<class T>
 AQueue<T>::AQueue(const AQueue<T>& queue)
 {
   // copy the size of the existing queue and allocate memory to hold
@@ -167,21 +163,19 @@ AQueue<T>::AQueue(const AQueue<T>& queue)
   this->backIndex = this->size - 1;
 }
 
-
 /** destructor
  * Destructor for the Queue class.  A concrete Queue implementation must
  * provide a clear() method to clear all items and safely deallocate any
  * memory that the concrete instance is using.  Invoke the clear
  * of the concrete subclass to perform the destruction.
  */
-template <class T>
+template<class T>
 AQueue<T>::~AQueue()
 {
   // call clear to do actual work to deallocate any allocation
   // before we destruct
   this->clear();
 }
-
 
 /** allocation size accessor
  * Accessor method to get the current amount of memory allocated
@@ -190,12 +184,11 @@ AQueue<T>::~AQueue()
  * @returns int Returns the current allocation size of the
  *   Queue of values.
  */
-template <class T>
+template<class T>
 int AQueue<T>::getAllocationSize() const
 {
   return allocationSize;
 }
-
 
 /** Queue to string
  * Accessor method to construct and return a string representation
@@ -204,14 +197,13 @@ int AQueue<T>::getAllocationSize() const
  * @returns string Returns the string constructed with the information
  *   about this Queue.
  */
-template <class T>
+template<class T>
 string AQueue<T>::str() const
 {
   ostringstream out;
 
   // stream queue information into the output stream
-  out << "<queue> size: " << this->size
-      << " front:[ ";
+  out << "<queue> size: " << this->size << " front:[ ";
 
   // stream the current values of the queue to the output stream
   // the array is a circular buffer, so we use the size to
@@ -235,14 +227,12 @@ string AQueue<T>::str() const
     {
       out << ", ";
     }
-
   }
   out << "]:back";
 
   // convert the string stream into a concrete string to return
   return out.str();
 }
-
 
 /** boolean equals operator
  * Check if this Queue is equal to the right hand side (rhs)
@@ -254,7 +244,7 @@ string AQueue<T>::str() const
  *
  * @returns bool true if the queues are equal, false if the are not.
  */
-template <class T>
+template<class T>
 bool AQueue<T>::operator==(const Queue<T>& rhs) const
 {
   // first the queues have to be of the same size, or else they
@@ -281,7 +271,6 @@ bool AQueue<T>::operator==(const Queue<T>& rhs) const
   return true;
 }
 
-
 /** indexing operator
  * Provide a way to index individual values in our private
  * internal array of integers.  This allows code to, for the
@@ -299,16 +288,15 @@ bool AQueue<T>::operator==(const Queue<T>& rhs) const
  * @throws QueueMemoryBoundsException if a request for an index beyond
  *   the end of the array (or less than 0) is made.
  */
-template <class T>
+template<class T>
 T& AQueue<T>::operator[](int index) const
 {
   // first check that the requsted index is legally
   // within the bounds of the current size of our queue
-  if ( (index < 0) or (index >= this->size)  )
+  if ((index < 0) or (index >= this->size))
   {
     ostringstream out;
-    out << "Error: <AQueue::operator[]> illegal bounds access, queue size: " << this->size
-        << " tried to access index address: " << index;
+    out << "Error: <AQueue::operator[]> illegal bounds access, queue size: " << this->size << " tried to access index address: " << index;
 
     throw QueueMemoryBoundsException(out.str());
   }
@@ -322,7 +310,6 @@ T& AQueue<T>::operator[](int index) const
   return values[queueIndex];
 }
 
-
 /** clear out queue
  * Clear or empty out the queue.  Return the queue back
  * to an empty queue.
@@ -332,7 +319,7 @@ T& AQueue<T>::operator[](int index) const
  *
  * @returns bool true if the queues are equal, false if the are not.
  */
-template <class T>
+template<class T>
 void AQueue<T>::clear()
 {
   // if values is not null, it points to a dynamic block of memory, so
@@ -349,7 +336,6 @@ void AQueue<T>::clear()
   this->frontIndex = 0;
   this->backIndex = -1;
 }
-
 
 /**
  * @brief Cause specific instance compilations

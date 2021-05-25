@@ -9,13 +9,12 @@
  *
  * Tests of the array based implementation of the Queue API.
  */
-#include <iostream>
-#include <cmath>
-#include "catch.hpp"
 #include "AQueue.hpp"
 #include "QueueException.hpp"
+#include "catch.hpp"
+#include <cmath>
+#include <iostream>
 using namespace std;
-
 
 /** Task 1: Test AQueue front() member method basic functionality.
  */
@@ -86,7 +85,6 @@ using namespace std;
    }
    }
  */
-
 
 /** Task 2: Test AQueue dequeue() member method basic functionality.
  */
@@ -164,7 +162,6 @@ using namespace std;
    }
  */
 
-
 /** Task 3: Test AQueue enqueue() member method basic functionality.
  */
 /*
@@ -202,7 +199,6 @@ using namespace std;
    }
    }
  */
-
 
 /** Task 3: Test AQueue<int> concrete array implementation of queue of integers
  * Once you have completed task 3, uncomment the final 2 set of tests
@@ -422,7 +418,6 @@ using namespace std;
    }
  */
 
-
 /** Task 3: Test AQueue<string> concrete array implementation of queue of strings
  * Once you have completed task 3, uncomment the final 2 set of tests
  * cases to more extensively test the AQueue class implementation.
@@ -536,14 +531,16 @@ using namespace std;
     CHECK(queue.getSize() == 10);
     CHECK(queue.getAllocationSize() == 10);   // only for AQueue
     CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 10 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000 ]:back");
+    CHECK(queue.str() == "<queue> size: 10 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512,
+   string-729, string-1000 ]:back");
 
     // Array based queue should double in size, only for AQueue tests
     queue.enqueue("string-" + to_string(int(pow(11, 3)) ) );
     CHECK(queue.getSize() == 11);
     CHECK(queue.getAllocationSize() == 20);   // only for AQueue
     CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000, string-1331 ]:back");
+    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512,
+   string-729, string-1000, string-1331 ]:back");
    }
 
    SECTION("test clear of queue")
@@ -557,7 +554,8 @@ using namespace std;
     CHECK(queue.getSize() == 11);
     CHECK(queue.getAllocationSize() == 20);   // only for AQueue
     CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000, string-1331 ]:back");
+    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512,
+   string-729, string-1000, string-1331 ]:back");
 
     // clear the queue
     queue.clear();

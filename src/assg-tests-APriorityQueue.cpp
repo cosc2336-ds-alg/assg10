@@ -9,13 +9,12 @@
  *
  * Tests of the array based implementation of the Priority Queue API.
  */
-#include <iostream>
-#include "catch.hpp"
 #include "APriorityQueue.hpp"
-#include "QueueException.hpp"
 #include "Job.hpp"
+#include "QueueException.hpp"
+#include "catch.hpp"
+#include <iostream>
 using namespace std;
-
 
 /** Test APriorityQueue<int> concrete array implementation of
  * priority queue of integers
@@ -146,7 +145,6 @@ using namespace std;
    }
  */
 
-
 /** Test APriorityQueue<string> concrete array implementation of
  * priority queue of string
  */
@@ -276,7 +274,6 @@ using namespace std;
    }
  */
 
-
 /** test PriorityQueue class on array based priority queue using Job objects
  */
 /*
@@ -321,14 +318,14 @@ using namespace std;
    priorityQueue.enqueue( Job(3, 4, 5, nextId++) );
    CHECK_FALSE(priorityQueue.isEmpty() );
    CHECK(priorityQueue.getSize() == 4);
-   CHECK(priorityQueue.str() == "<queue> size: 4 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority: 3) ]:back");
-   CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
+   CHECK(priorityQueue.str() == "<queue> size: 4 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority: 3)
+   ]:back"); CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
 
    priorityQueue.enqueue( Job(1, 2, 3, nextId++) );
    CHECK_FALSE(priorityQueue.isEmpty() );
    CHECK(priorityQueue.getSize() == 5);
-   CHECK(priorityQueue.str() == "<queue> size: 5 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority: 3), (id: 5 priority: 1) ]:back");
-   CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
+   CHECK(priorityQueue.str() == "<queue> size: 5 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority:
+   3), (id: 5 priority: 1) ]:back"); CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
 
    // equal priority, we insert another Job with priority 5, it should end up on
    // the queu after the existing Job with same priority if you implement your
@@ -336,8 +333,8 @@ using namespace std;
    priorityQueue.enqueue( Job(5, 9, 9, nextId++) );
    CHECK_FALSE(priorityQueue.isEmpty() );
    CHECK(priorityQueue.getSize() == 6);
-   CHECK(priorityQueue.str() == "<queue> size: 6 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 6 priority: 5), (id: 4 priority: 3), (id: 5 priority: 1) ]:back");
-   CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
+   CHECK(priorityQueue.str() == "<queue> size: 6 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 6 priority:
+   5), (id: 4 priority: 3), (id: 5 priority: 1) ]:back"); CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
    CHECK(priorityQueue[2].getId() == 1);
    CHECK(priorityQueue[3].getId() == 6);
    }

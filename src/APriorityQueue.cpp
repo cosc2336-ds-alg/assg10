@@ -17,10 +17,9 @@
  * rhs T value.
  */
 #include "APriorityQueue.hpp"
-#include "QueueException.hpp"
 #include "Job.hpp"
+#include "QueueException.hpp"
 using namespace std;
-
 
 // define macros to make it easier to access the base class protected
 // members without all of the cruft
@@ -30,7 +29,6 @@ using namespace std;
 #define backIndex AQueue<T>::backIndex
 #define values AQueue<T>::values
 #define growQueueIfNeeded() AQueue<T>::growQueueIfNeeded()
-
 
 /** implement true modulo
  * Unfortunately the C/C++ `%` operation actually gives the remainder
@@ -49,12 +47,12 @@ using namespace std;
  * @returns int Returns true modulo of the division.  If the divisor is positive,
  *   we return a positive remainder.
  */
-template <class T>
+template<class T>
 int APriorityQueue<T>::modulo(int dividend, int divisor)
 {
   int remainder = dividend % divisor;
 
-  if ( (divisor > 0) and (remainder < 0) )
+  if ((divisor > 0) and (remainder < 0))
   {
     remainder = divisor + remainder;
   }
@@ -62,16 +60,15 @@ int APriorityQueue<T>::modulo(int dividend, int divisor)
   return remainder;
 }
 
-
 /** default constructor
  * Construct an empty queue.  The empty queue will have no allocated memory
  * nor any values.
  */
-template <class T>
-APriorityQueue<T>::APriorityQueue() : AQueue<T>()
+template<class T>
+APriorityQueue<T>::APriorityQueue()
+  : AQueue<T>()
 {
 }
-
 
 /** standard constructor
  * Construct a queue of  values from a (statically) defined and
@@ -84,11 +81,11 @@ APriorityQueue<T>::APriorityQueue() : AQueue<T>()
  * @param initValues The (static) array of values to use to construct
  *   this Queue values with.
  */
-template <class T>
-APriorityQueue<T>::APriorityQueue(int initSize, T initValues[]) : AQueue<T>(initSize, initValues)
+template<class T>
+APriorityQueue<T>::APriorityQueue(int initSize, T initValues[])
+  : AQueue<T>(initSize, initValues)
 {
 }
-
 
 /**
  * @brief Cause specific instance compilations

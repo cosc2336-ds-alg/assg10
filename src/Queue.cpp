@@ -12,23 +12,21 @@
  * Implementation of Queue base class concrete member functions
  * and friend functions.
  */
-#include <iostream>
 #include "Queue.hpp"
 #include "Job.hpp"
+#include <iostream>
 using namespace std;
-
 
 /** size accessor
  * Accessor method to get the current size of this Queue of values.
  *
  * @returns int Returns the current size of the queue of values.
  */
-template <class T>
+template<class T>
 int Queue<T>::getSize() const
 {
   return size;
 }
-
 
 /** check if empty queue
  * Accessor method to test if the Queue is currently
@@ -37,14 +35,13 @@ int Queue<T>::getSize() const
  * @returns bool Returns true if the Queue is currently
  *   empty, or false if it has 1 or more items.
  */
-template <class T>
+template<class T>
 bool Queue<T>::isEmpty() const
 {
   // can simply test size, if it is equal to 0, then it is true the
   // queue is empty, if it is not equal, then the answer is false
   return size == 0;
 }
-
 
 /** Queue output operator
  *@brief overload output stream operator for Queue type.
@@ -64,7 +61,7 @@ bool Queue<T>::isEmpty() const
  *   output stream, but after we  have inserted current Queue
  *   values / representation onto the stream
  */
-template <typename U>
+template<typename U>
 ostream& operator<<(ostream& out, const Queue<U>& rhs)
 {
   // reuse Queue str() method to stream to output stream
@@ -73,7 +70,6 @@ ostream& operator<<(ostream& out, const Queue<U>& rhs)
   // return the modified output stream as our result
   return out;
 }
-
 
 /**
  * @brief Cause specific instance compilations
@@ -86,9 +82,8 @@ ostream& operator<<(ostream& out, const Queue<U>& rhs)
  * https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl
  * https://isocpp.org/wiki/faq/templates#separate-template-class-defn-from-decl
  */
-template ostream & operator<< <int>(ostream&, const Queue<int>&);
-template ostream & operator<< <string>(ostream&, const Queue<string>&);
-
+template ostream& operator<<<int>(ostream&, const Queue<int>&);
+template ostream& operator<<<string>(ostream&, const Queue<string>&);
 
 /**
  * @brief Cause specific instance compilations

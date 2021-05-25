@@ -9,24 +9,22 @@
  *
  * Tests of the linked list based implementation of the Queue API.
  */
-#include <iostream>
-#include "catch.hpp"
 #include "LQueue.hpp"
 #include "QueueException.hpp"
+#include "catch.hpp"
+#include <iostream>
 using namespace std;
-
 
 /** Test LQueue<int> concrete linked list implementation of queue of integers
  */
-TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
-          "[task0]")
+TEST_CASE("LQueue<int> test integer queue concrete linked list implementation", "[task0]")
 {
   SECTION("test empty queue is empty")
   {
     // empty queues should be empty
     LQueue<int> empty;
     CHECK(empty.getSize() == 0);
-    CHECK(empty.isEmpty() );
+    CHECK(empty.isEmpty());
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
 
     // empty queues should compare as being equal
@@ -41,7 +39,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     // empty queue can be cleared and is still empty
     empty.clear();
     CHECK(empty.getSize() == 0);
-    CHECK(empty.isEmpty() );
+    CHECK(empty.isEmpty());
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
   }
 
@@ -50,34 +48,34 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     // start with emtpy queue
     LQueue<int> queue;
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // enqueue an item on empty queue
     queue.enqueue(5);
     CHECK(queue.getSize() == 1);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 5);
     CHECK(queue.str() == "<queue> size: 1 front:[ 5 ]:back");
 
     // enqueue a second  item on queue
     queue.enqueue(8);
     CHECK(queue.getSize() == 2);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 5);
     CHECK(queue.str() == "<queue> size: 2 front:[ 5, 8 ]:back");
 
     // enqueue a third item on queue
     queue.enqueue(15);
     CHECK(queue.getSize() == 3);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 5);
     CHECK(queue.str() == "<queue> size: 3 front:[ 5, 8, 15 ]:back");
 
     // test dequeue of queue with more than 1 item
     queue.dequeue();
     CHECK(queue.getSize() == 2);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 8);
     CHECK(queue.str() == "<queue> size: 2 front:[ 8, 15 ]:back");
 
@@ -86,7 +84,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     CHECK(queue.front() == 8);
     queue.enqueue(3);
     CHECK(queue.getSize() == 4);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 8);
     CHECK(queue.str() == "<queue> size: 4 front:[ 8, 15, 1, 3 ]:back");
 
@@ -95,14 +93,14 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     queue.dequeue();
     queue.dequeue();
     CHECK(queue.getSize() == 1);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == 3);
     CHECK(queue.str() == "<queue> size: 1 front:[ 3 ]:back");
 
     // make queue empty again
     queue.dequeue();
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // should complain if we try and dequeue an empty queue
@@ -111,16 +109,16 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     // enqueue on 10 items
     for (int index = 1; index <= 10; index++)
     {
-      queue.enqueue(pow(index, 3) );
+      queue.enqueue(pow(index, 3));
     }
     CHECK(queue.getSize() == 10);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 10 front:[ 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000 ]:back");
 
     // Array based queue should double in size, only for LQueue tests
-    queue.enqueue(pow(11, 3) );
+    queue.enqueue(pow(11, 3));
     CHECK(queue.getSize() == 11);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 11 front:[ 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331 ]:back");
   }
 
@@ -130,16 +128,16 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     LQueue<int> queue;
     for (int index = 1; index <= 11; index++)
     {
-      queue.enqueue(pow(index, 3) );
+      queue.enqueue(pow(index, 3));
     }
     CHECK(queue.getSize() == 11);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 11 front:[ 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331 ]:back");
 
     // clear the queue
     queue.clear();
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // should be equal to an empty queue
@@ -155,7 +153,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
 
     // nonempty queue should not be empty
     CHECK(queue.getSize() == 5);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 5 front:[ 1, 3, -2, -4, 7 ]:back");
 
     // test access to front and back
@@ -168,7 +166,7 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
     CHECK(queue[3] == -4);
     CHECK(queue[4] == 7);
     CHECK_THROWS_AS(queue[-1], QueueMemoryBoundsException);
-    CHECK_THROWS_AS(queue[5],  QueueMemoryBoundsException);
+    CHECK_THROWS_AS(queue[5], QueueMemoryBoundsException);
     queue[2] = 42;
     CHECK(queue[2] == 42);
     CHECK(queue.str() == "<queue> size: 5 front:[ 1, 3, 42, -4, 7 ]:back");
@@ -215,15 +213,14 @@ TEST_CASE("LQueue<int> test integer queue concrete linked list implementation",
 
 /** Test LQueue<string> concrete linked list implementation of queue of strings
  */
-TEST_CASE("LQueue<string> test string queue concrete linked list implementation",
-          "[task0]")
+TEST_CASE("LQueue<string> test string queue concrete linked list implementation", "[task0]")
 {
   SECTION("test empty queue is empty")
   {
     // empty queues should be empty
     LQueue<string> empty;
     CHECK(empty.getSize() == 0);
-    CHECK(empty.isEmpty() );
+    CHECK(empty.isEmpty());
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
 
     // empty queues should compare as being equal
@@ -238,7 +235,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     // empty queue can be cleared and is still empty
     empty.clear();
     CHECK(empty.getSize() == 0);
-    CHECK(empty.isEmpty() );
+    CHECK(empty.isEmpty());
     CHECK(empty.str() == "<queue> size: 0 front:[ ]:back");
   }
 
@@ -247,34 +244,34 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     // start with empty queue
     LQueue<string> queue;
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // enqueue an item on empty queue
     queue.enqueue("echo");
     CHECK(queue.getSize() == 1);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "echo");
     CHECK(queue.str() == "<queue> size: 1 front:[ echo ]:back");
 
     // enqueue a second  item on queue
     queue.enqueue("hotel");
     CHECK(queue.getSize() == 2);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "echo");
     CHECK(queue.str() == "<queue> size: 2 front:[ echo, hotel ]:back");
 
     // enqueue a third item on queue
     queue.enqueue("oscar");
     CHECK(queue.getSize() == 3);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "echo");
     CHECK(queue.str() == "<queue> size: 3 front:[ echo, hotel, oscar ]:back");
 
     // test dequeue of queue with more than 1 item
     queue.dequeue();
     CHECK(queue.getSize() == 2);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "hotel");
     CHECK(queue.str() == "<queue> size: 2 front:[ hotel, oscar ]:back");
 
@@ -283,7 +280,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     CHECK(queue.front() == "hotel");
     queue.enqueue("charlie");
     CHECK(queue.getSize() == 4);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "hotel");
     CHECK(queue.str() == "<queue> size: 4 front:[ hotel, oscar, alpha, charlie ]:back");
 
@@ -292,14 +289,14 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     queue.dequeue();
     queue.dequeue();
     CHECK(queue.getSize() == 1);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.front() == "charlie");
     CHECK(queue.str() == "<queue> size: 1 front:[ charlie ]:back");
 
     // make queue empty again
     queue.dequeue();
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // should complain if we try and dequeue an empty queue
@@ -308,17 +305,19 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     // enqueue on 10 items
     for (int index = 1; index <= 10; index++)
     {
-      queue.enqueue("string-" + to_string(int(pow(index, 3)) ) );
+      queue.enqueue("string-" + to_string(int(pow(index, 3))));
     }
     CHECK(queue.getSize() == 10);
-    CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 10 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000 ]:back");
+    CHECK_FALSE(queue.isEmpty());
+    CHECK(queue.str() == "<queue> size: 10 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, "
+                         "string-512, string-729, string-1000 ]:back");
 
     // Array based queue should double in size, only for LQueue tests
-    queue.enqueue("string-" + to_string(int(pow(11, 3)) ) );
+    queue.enqueue("string-" + to_string(int(pow(11, 3))));
     CHECK(queue.getSize() == 11);
-    CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000, string-1331 ]:back");
+    CHECK_FALSE(queue.isEmpty());
+    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, "
+                         "string-512, string-729, string-1000, string-1331 ]:back");
   }
 
   SECTION("test clear of queue")
@@ -327,16 +326,17 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     LQueue<string> queue;
     for (int index = 1; index <= 11; index++)
     {
-      queue.enqueue("string-" + to_string(int(pow(index, 3)) ) );
+      queue.enqueue("string-" + to_string(int(pow(index, 3))));
     }
     CHECK(queue.getSize() == 11);
-    CHECK_FALSE(queue.isEmpty() );
-    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512, string-729, string-1000, string-1331 ]:back");
+    CHECK_FALSE(queue.isEmpty());
+    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, "
+                         "string-512, string-729, string-1000, string-1331 ]:back");
 
     // clear the queue
     queue.clear();
     CHECK(queue.getSize() == 0);
-    CHECK(queue.isEmpty() );
+    CHECK(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 0 front:[ ]:back");
 
     // should be equal to an empty queue
@@ -352,7 +352,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
 
     // nonempty queue should not be empty
     CHECK(queue.getSize() == 5);
-    CHECK_FALSE(queue.isEmpty() );
+    CHECK_FALSE(queue.isEmpty());
     CHECK(queue.str() == "<queue> size: 5 front:[ alpha, charlie, neg-bravo, neg-delta, golf ]:back");
 
     // test access to front and back
@@ -365,7 +365,7 @@ TEST_CASE("LQueue<string> test string queue concrete linked list implementation"
     CHECK(queue[3] == "neg-delta");
     CHECK(queue[4] == "golf");
     CHECK_THROWS_AS(queue[-1], QueueMemoryBoundsException);
-    CHECK_THROWS_AS(queue[5],  QueueMemoryBoundsException);
+    CHECK_THROWS_AS(queue[5], QueueMemoryBoundsException);
     queue[2] = "life-universe-everything";
     CHECK(queue[2] == "life-universe-everything");
     CHECK(queue.str() == "<queue> size: 5 front:[ alpha, charlie, life-universe-everything, neg-delta, golf ]:back");

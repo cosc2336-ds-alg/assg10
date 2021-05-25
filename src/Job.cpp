@@ -11,20 +11,18 @@
  * user defined types.  A Job has a priority, and boolean operators
  * like operator<() are overloaded to order jobs by their priority.
  */
+#include "Job.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Job.hpp"
 
 using namespace std;
-
 
 /**
  * A constant for the Job class, used to keep track of
  * and assign unique id's for each job created.
  */
 int Job::nextListId = 1;
-
 
 /** Job default constructor
  * Default constructor for Job, needed because some Queue types
@@ -41,7 +39,6 @@ Job::Job()
   this->startTime = 0;
   this->endTime = 0;
 }
-
 
 /** Job constructor
  * The actual constructor that needs to be used for Jobs in a simulation.
@@ -68,7 +65,6 @@ Job::Job(int priority, int serviceTime, int startTime, int id)
   this->endTime = startTime;
 }
 
-
 /** endTime setter
  * Setter method to set the endTime of this Job.  This is actually the endTime
  * of when the job stoped waiting and began executing (not the time when the job
@@ -82,7 +78,6 @@ void Job::setEndTime(int endTime)
   this->endTime = endTime;
 }
 
-
 /** id getter
  * Getter method to return this Job's id.  Used for display purposes.
  *
@@ -92,7 +87,6 @@ int Job::getId() const
 {
   return id;
 }
-
 
 /** service time getter
  * Getter method to return this Job's service time.  Service time
@@ -106,7 +100,6 @@ int Job::getServiceTime() const
   return serviceTime;
 }
 
-
 /** priority getter
  * Getter method to return this Job's priority level.  Priority
  * is a measure of the job importance.  In this simulation, higher
@@ -118,7 +111,6 @@ int Job::getPriority() const
 {
   return priority;
 }
-
 
 /** waitTime getter
  * Getter method to return this Job's waitTime.  Wait time is
@@ -134,7 +126,6 @@ int Job::getWaitTime() const
 {
   return endTime - startTime;
 }
-
 
 /** cost getter
  * Getter method to return this Job's cost.  Cost is a measure of
@@ -158,7 +149,6 @@ int Job::getCost() const
   return priority * getWaitTime();
 }
 
-
 /** overload boolean equal comparison
  * Overload boolean comparison between jobs.  The main purpose of
  * providing boolean comparisons between jobs in this simulation is
@@ -176,7 +166,6 @@ bool Job::operator==(const Job& rhs) const
 {
   return this->priority == rhs.priority;
 }
-
 
 /** overload boolean less than
  * Overload boolean less than comparison between jobs.  The main
@@ -197,7 +186,6 @@ bool Job::operator<(const Job& rhs) const
   return this->priority < rhs.priority;
 }
 
-
 /** overload boolean greater than
  * Overload boolean greater than comparison between jobs.  The main
  * purpose of providing boolean comparisons between jobs in this
@@ -216,7 +204,6 @@ bool Job::operator>(const Job& rhs) const
 {
   return this->priority > rhs.priority;
 }
-
 
 /** overload boolean <=
  * Overload boolean less than or equal comparison between jobs.  The
@@ -237,7 +224,6 @@ bool Job::operator<=(const Job& rhs) const
   return this->priority <= rhs.priority;
 }
 
-
 /** overload boolean !=
  * Overload boolean not equal comparison between jobs.  The
  * main purpose of providing boolean comparisons between jobs in this
@@ -257,7 +243,6 @@ bool Job::operator!=(const Job& rhs) const
   return this->priority != rhs.priority;
 }
 
-
 /** to string
  * Make a string representation of this Job suitable for display.
  *
@@ -268,12 +253,9 @@ string Job::str() const
 {
   ostringstream out;
 
-  out << "(id: " << id
-      << " priority: " << priority
-      << ")";
+  out << "(id: " << id << " priority: " << priority << ")";
   return out.str();
 }
-
 
 /** overload output stream operator
  * Overload the output stream operator to provide a representation

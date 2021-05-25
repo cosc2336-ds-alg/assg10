@@ -21,7 +21,6 @@
 #include "AQueue.hpp"
 using namespace std;
 
-
 /** @class APriorityQueue
  * @brief The APriorityQueue concrete array based implemention of the
  *   Queue interface that dequeues items in order of priority.
@@ -31,7 +30,7 @@ using namespace std;
  * we only override the enqueue() method so that we insert new values into
  * the queue in priority order.
  */
-template <class T>
+template<class T>
 class APriorityQueue : public AQueue<T>
 {
 private:
@@ -44,6 +43,5 @@ public:
 
   // adding, accessing and removing values from the queue
 };
-
 
 #endif // define _APRIORITYQUEUE_HPP_

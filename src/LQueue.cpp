@@ -18,20 +18,19 @@
  * of the queue, and since we are only removing from the front, both
  * enqueue and dequeue are constant time O(1) operations.
  */
+#include "LQueue.hpp"
+#include "Job.hpp"
+#include "QueueException.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "LQueue.hpp"
-#include "QueueException.hpp"
-#include "Job.hpp"
 using namespace std;
-
 
 /** default constructor
  * Construct an empty queue.  The empty queue will have no allocated memory
  * nor any values.
  */
-template <class T>
+template<class T>
 LQueue<T>::LQueue()
 {
   // Empty queue has size 0 and top is null
@@ -39,7 +38,6 @@ LQueue<T>::LQueue()
   frontNode = nullptr;
   backNode = nullptr;
 }
-
 
 /** standard constructor
  * Construct a queue of values from a (statically) defined and
@@ -52,7 +50,7 @@ LQueue<T>::LQueue()
  * @param values The (static) array of values to use to construct
  *   this new Queue of values with.
  */
-template <class T>
+template<class T>
 LQueue<T>::LQueue(int size, T values[])
 {
   // Make sure queue is empty before copying values from array.
@@ -69,7 +67,6 @@ LQueue<T>::LQueue(int size, T values[])
   }
 }
 
-
 /** copy constructor
  * Provide a copy constructor for the Queue class.  A copy constructor
  * will be invoked whenver you assign one instance of a Queue to another.
@@ -82,7 +79,7 @@ LQueue<T>::LQueue(int size, T values[])
  * @param queue The other Queue type we are to make a copy of in this
  *   constructor.
  */
-template <class T>
+template<class T>
 LQueue<T>::LQueue(const LQueue<T>& queue)
 {
   // Make sure queue is empty before copying values from other queue.
@@ -99,21 +96,19 @@ LQueue<T>::LQueue(const LQueue<T>& queue)
   }
 }
 
-
 /** destructor
  * Destructor for the Queue class.  A concrete Queue implementation must
  * provide a clear() method to clear all items and safely deallocate any
  * memory that the concrete instance is using.  Invoke the clear
  * of the concrete subclass to perform the destruction.
  */
-template <class T>
+template<class T>
 LQueue<T>::~LQueue()
 {
   // call clear to do actual work to deallocate any allocation
   // before we destruct
   clear();
 }
-
 
 /** access frontof queue
  * Accessor method to get a copy of the item currently
@@ -126,7 +121,7 @@ LQueue<T>::~LQueue()
  *   access front item of an empty queue, this exception
  *   is generated and thrown instead.
  */
-template <class T>
+template<class T>
 T LQueue<T>::front() const
 {
   // make sure queue is not empty before we try and access
@@ -144,7 +139,6 @@ T LQueue<T>::front() const
   return frontNode->value;
 }
 
-
 /** Queue to string
  * Accessor method to construct and return a string representation
  * of the current values and status of this Queue instance.
@@ -152,14 +146,13 @@ T LQueue<T>::front() const
  * @returns string Returns the string constructed with the information
  *   about this Queue.
  */
-template <class T>
+template<class T>
 string LQueue<T>::str() const
 {
   ostringstream out;
 
   // stream queue information into the output stream
-  out << "<queue> size: " << this->size
-      << " front:[ ";
+  out << "<queue> size: " << this->size << " front:[ ";
 
   // stream the current values of the queue to the output stream
   Node<T>* current = frontNode;
@@ -188,7 +181,6 @@ string LQueue<T>::str() const
   return out.str();
 }
 
-
 /** boolean equals operator
  * Check if this Queue is equal to the right hand side (rhs)
  * queue.  The queues are equal if their sizes are equal, and if
@@ -199,7 +191,7 @@ string LQueue<T>::str() const
  *
  * @returns bool true if the queues are equal, false if the are not.
  */
-template <class T>
+template<class T>
 bool LQueue<T>::operator==(const Queue<T>& rhs) const
 {
   // first the queues have to be of the same size, or else they
@@ -225,7 +217,6 @@ bool LQueue<T>::operator==(const Queue<T>& rhs) const
   return true;
 }
 
-
 /** indexing operator
  * Provide a way to index individual values in our private
  * linked queue of values.  This allows code to, for the
@@ -242,16 +233,15 @@ bool LQueue<T>::operator==(const Queue<T>& rhs) const
  * @throws QueueMemoryBoundsException if a request for an index beyond
  *   the end of the array (or less than 0) is made.
  */
-template <class T>
+template<class T>
 T& LQueue<T>::operator[](int index) const
 {
   // first check that the requsted index is legally
   // within the bounds of the current size of our queue
-  if ( (index < 0) or (index >= this->size)  )
+  if ((index < 0) or (index >= this->size))
   {
     ostringstream out;
-    out << "Error: <LQueue::operator[]> illegal bounds access, queue size: " << this->size
-        << " tried to access index address: " << index;
+    out << "Error: <LQueue::operator[]> illegal bounds access, queue size: " << this->size << " tried to access index address: " << index;
 
     throw QueueMemoryBoundsException(out.str());
   }
@@ -271,12 +261,11 @@ T& LQueue<T>::operator[](int index) const
   return current->value;
 }
 
-
 /** clear out queue
  * Clear or empty out the queue.  Return the queue back
  * to an empty queue.
  */
-template <class T>
+template<class T>
 void LQueue<T>::clear()
 {
   // if the queue is not empty, we need to deallocate and return the nodes
@@ -304,13 +293,12 @@ void LQueue<T>::clear()
   backNode = nullptr;
 }
 
-
 /** enqueue value on back of queue
  * Enqueue the value to the back of this Queue.
  *
  * @param value The value to enqueue on back of the current queue.
  */
-template <class T>
+template<class T>
 void LQueue<T>::enqueue(const T& value)
 {
   // dynamically allocate a new Node to hold the value
@@ -337,13 +325,12 @@ void LQueue<T>::enqueue(const T& value)
   this->size += 1;
 }
 
-
 /** dequeue queue front item
  * Dequeue the item from the front of the queue.  This operation is
  * O(1) constant time because we dequeue from the front of our singly
  * linked list.
  */
-template <class T>
+template<class T>
 void LQueue<T>::dequeue()
 {
   // make sure queue is not empty before we try and access
@@ -377,7 +364,6 @@ void LQueue<T>::dequeue()
     backNode = nullptr;
   }
 }
-
 
 /**
  * @brief Cause specific instance compilations

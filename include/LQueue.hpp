@@ -21,11 +21,10 @@
  */
 #ifndef _LQUEUE_HPP_
 #define _LQUEUE_HPP_
-#include <string>
-#include "Queue.hpp"
 #include "Node.hpp"
+#include "Queue.hpp"
+#include <string>
 using namespace std;
-
 
 /** @class LQueue
  * @brief The LQueue concrete linked list implemention of the
@@ -35,7 +34,7 @@ using namespace std;
  * link listed of nodes.  We enqueue items onto the back of the
  * linked list, and dequeue them from the front of the linked list.
  */
-template <class T>
+template<class T>
 class LQueue : public Queue<T>
 {
 protected:
@@ -65,6 +64,5 @@ public:
   void enqueue(const T& value);
   void dequeue();
 };
-
 
 #endif // define _LQUEUE_HPP_

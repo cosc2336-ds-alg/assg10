@@ -18,7 +18,6 @@
 #include <iostream>
 using namespace std;
 
-
 /** @class Queue
  * @brief The Queue data type abstraction
  *
@@ -27,7 +26,7 @@ using namespace std;
  * perform with queues, such as enqueue and dequeue items from the
  * queue and retrieve the item now at the front of the queue.
  */
-template <class T>
+template<class T>
 class Queue
 {
 protected:
@@ -39,18 +38,18 @@ public:
   // accessor and information methods
   int getSize() const;
   bool isEmpty() const;
-  //virtual T front() const = 0;
+  // virtual T front() const = 0;
   virtual string str() const = 0;
   virtual bool operator==(const Queue<T>& rhs) const = 0;
   virtual T& operator[](int index) const = 0;
 
   // adding, accessing and removing values from the queue
   virtual void clear() = 0;
-  //virtual void enqueue(const T& newItem) = 0;
-  //virtual void dequeue() = 0;
+  // virtual void enqueue(const T& newItem) = 0;
+  // virtual void dequeue() = 0;
 
   // friend functions and friend operators
-  template <typename U>
+  template<typename U>
   friend ostream& operator<<(ostream& out, const Queue<U>& rhs);
 };
 
