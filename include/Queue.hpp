@@ -29,11 +29,6 @@ using namespace std;
 template<class T>
 class Queue
 {
-protected:
-  /// @brief the current size of the queue of values, this is
-  ///   protected so derived classes can access it
-  int size;
-
 public:
   // accessor and information methods
   int getSize() const;
@@ -51,6 +46,11 @@ public:
   // friend functions and friend operators
   template<typename U>
   friend ostream& operator<<(ostream& out, const Queue<U>& rhs);
+
+protected: // private to this class and its children
+  /// @brief the current size of the queue of values, this is
+  ///   protected so derived classes can access it
+  int size;
 };
 
 #endif // _QUEUE_HPP_

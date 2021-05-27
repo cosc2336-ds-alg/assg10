@@ -1,4 +1,4 @@
-/** @file assg-tests-APriorityQueue.cpp
+/** @file test-APriorityQueue.cpp
  * @brief Unit tests for Assignment Queues
  *
  * @author Derek Harter

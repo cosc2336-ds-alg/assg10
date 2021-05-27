@@ -208,10 +208,10 @@ using and adding code to for this assignment.
 
 | File Name                                          | Description                                                                                                                         |
 |----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `src/assg-tests-AQueue.cpp`                        | Unit tests of the array based `AQueue` implementation of the `Queue` API                                                            |
-| `src/assg-tests-LQueue.cpp`                        | Unit tests of the link list based `LQueue` implementation of the `Queue` API                                                        |
-| `src/assg-tests-APriorityQueue.cpp`                | Unit tests of the array based `APriorityQueue` implementation of the `Queue` API                                                    |
-| `src/assg-tests-LPriorityQueue.cpp`                | Unit tests of the link list based `LPriorityQueue` implementation of the `Queue` API                                                |
+| `src/test-AQueue.cpp`                              | Unit tests of the array based `AQueue` implementation of the `Queue` API                                                            |
+| `src/test-LQueue.cpp`                              | Unit tests of the link list based `LQueue` implementation of the `Queue` API                                                        |
+| `src/test-APriorityQueue.cpp`                      | Unit tests of the array based `APriorityQueue` implementation of the `Queue` API                                                    |
+| `src/test-LPriorityQueue.cpp`                      | Unit tests of the link list based `LPriorityQueue` implementation of the `Queue` API                                                |
 | `include/Queue.hpp`                                | Header file of the ADT base `Queue` class that defines the `Queue` interface / abstraction                                          |
 | `include/AQueue.hpp`                               | Header file of the concrete array based implementation of the `Queue` abstract data type                                            |
 | `include/APriorityQueue.hpp`                       | Header file of the concrete array based implementation of a priority queue for the `Queue` abstract data type                       |
@@ -239,17 +239,15 @@ you have completed the following setup steps.
    current class semester and section.
 2. Clone the repository using the SSH URL to your local class DevBox
    development environment.
-3. Checkout the 'origins/feedback' branch to your local working DevBox
-   repository.
-4. Configure the project by running the `configure` script from a terminal.
-5. Confirm that the project builds and runs, though no tests will be
+3. Configure the project by running the `configure` script from a terminal.
+4. Confirm that the project builds and runs, though no tests will be
    defined or run initially.  If the project does not build on the first
    checkout, please inform the instructor.
-6. You should create the issue for Task 1 and/or for all tasks for the assignment
-   now before beginning the first task.  On your GitHub account, go to issues,
-   and create it/them from the issue templates for the assignment.  Also you
-   should close the initial Pull request that should be automatically
-   opened for you, so that you can open your own when committing your work.
+5. You should create the issue for Task 1 and/or for all tasks for the
+   assignment now before beginning the first task.  On your GitHub
+   account, go to issues, and create it/them from the issue templates
+   for the assignment. Also make sure you link the issues to the
+   `Feedback` pull request after creating them.
 
 
 # Assignment Tasks
@@ -257,10 +255,11 @@ you have completed the following setup steps.
 ## Task 1: Implement the `AQueue` `front()` Accessor Method
 
 As usual make sure that you have created Task 1 on your
-GitHub repository for this assignment and are ready to create
-a new Pull request for this assignment.
+GitHub repository for this assignment and have linked
+the Task 1 issue to the open `Feedback` pull request
+in your GitHub assignment repository.
 
-There is a test case in `assg-tests-AQueue.cpp` for task 1.
+There is a test case in `test-AQueue.cpp` for task 1.
 It only does a few simple tests of the `front()` member method, but as
 usual you should uncomment this test case first, and add in the
 function prototype and a stub method to check that you can compile and
@@ -282,13 +281,13 @@ of type `QueueEmptyException` if an attempt is made to peek
 at the front item of an empty queue.
 
 Once you are satisfied with your work and can pass the tests
-for the task 1, commit your work and push it to the `feedback`
-branch of your GitHub repository for this assignment.
+for the task 1, commit your work and push it to the `Feedback`
+pull request of your GitHub repository for this assignment.
 
 	
 ## Task 2: Implement the `AQueue` `dequeue()` Mutator Method
 
-Start task 2 by uncommenting the next unit test in the `assg-tests-AQueue.cpp`
+Start task 2 by uncommenting the next unit test in the `test-AQueue.cpp`
 and creating the function declaration and a stub function to make sure the
 tests run.  Also don't forget to uncomment the `dequeue()` declaration
 in the `Queue.hpp` base class header before beginning implementation.
@@ -320,12 +319,12 @@ the `size` member variable appropriately.
 
 Once you are satisfied with your work and can pass the tests for the
 second test case, commit your work and push your commit to your
-GitHub assignment repository `feedback` branch.
+GitHub assignment repository `Feedback` pull request.
 
 ## Task 3: Implement the `AQueue` `enqueue()` Mutator Method
 
 Do the same as previous 2 tasks to start task 3, uncomment the next
-test case in `assg-tests-AQueue.cpp`, add in the declaration
+test case in `test-AQueue.cpp`, add in the declaration
 and stub function for the `enqueue()` method, and don't forget to
 also uncomment the `enqueue()` virtual declaration in the `Queue.hpp`
 base class header file.
@@ -355,17 +354,17 @@ value given to the `enqueue()` method into the `values` array.  Also don't
 forget that you array has now increased in `size` by 1.
 
 Once you are satisfied with your work and can pass the tests for the
-third test case, there are some additional tests in the `assg-tests-AQueue.cpp`
+third test case, there are some additional tests in the `test-AQueue.cpp`
 testing file.  You should uncomment the additional 2 tests cases as well and
 ensure that your new methods can pass all of the more extensive testing of the
 `AQueue` class.  Once you are passing all of the tests, commit your work
-and push it to the `feedback` branch of your repository.
+and push it to the `Feedback` pull request of your repository.
 
 ## Task 4: Implement the `APriorityQueue` `enqueue()` Overridden Method
 
 The first 3 tasks, to add in the missing member functions of the `AQueue` class,
 were meant to be warm-up exercises, and hopefully were not too tough to figure out.
-The next 2 tasks will be a bit more challenging.  
+The next 2 tasks will be a bit more challenging.
 
 For this task you will be adding a new method to the `APriorityQueue`
 class.  The purpose of the priority queue is discussed a bit above in
@@ -395,7 +394,7 @@ implementation file here.
 
 Once you have added these to the `APriorityQueue` header and
 implementation file, uncomment the test cases in the
-`assg-tests-APriorityQueue.cpp` file.  There are three test cases that
+`test-APriorityQueue.cpp` file.  There are three test cases that
 test an `APriorityQueue` with integers, with strings and on a `Job`
 user defined class.  You can uncomment both of these, and make sure
 your project compiles and runs the tests.  All of the tests you just
@@ -541,7 +540,7 @@ of the linked list and dequeueing from the back, both operations are
 To begin task 5, do similar steps as in task 4.  Copy the declaration of
 the `enqueue()` method from the `LQueue.hpp` header file, and the
 implementation of `enqueue()` from `LQueue.cpp`.  Also go ahead and uncomment
-all of the tests in `assg-tests-LPriorityQueue.cpp`.  The project should
+all of the tests in `test-LPriorityQueue.cpp`.  The project should
 compile and run like in task 4, but since the `enqueue()` method is not
 keeping items sorted by priority, some of the tests will be failing.
 
@@ -586,8 +585,8 @@ future we needed to add some functionality that did need to keep track of the
 back node.
 
 Once you are satisfied with your implementation and it can pass the tests
-in the `assg-tests-LPriorityQueue.cpp` test file, commit your work and
-push it to the `feedback` branch of your assignment repository.
+in the `test-LPriorityQueue.cpp` test file, commit your work and
+push it to the `Feedback` pull request of your assignment repository.
 
 # Assignment Submission
 

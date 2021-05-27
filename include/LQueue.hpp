@@ -37,15 +37,6 @@ using namespace std;
 template<class T>
 class LQueue : public Queue<T>
 {
-protected:
-  /// @brief pointer to the front node of the linked list of
-  ///   nodes that we manage for the LQueue.
-  Node<T>* frontNode;
-
-  /// @brief pointer to the back node of the linked list of
-  ///   nodes that we manage for the LQueue.
-  Node<T>* backNode;
-
 public:
   // constructors and destructors
   LQueue();                            // default constructor
@@ -63,6 +54,15 @@ public:
   void clear();
   void enqueue(const T& value);
   void dequeue();
+
+protected: // private to all except this class and its children
+  /// @brief pointer to the front node of the linked list of
+  ///   nodes that we manage for the LQueue.
+  Node<T>* frontNode;
+
+  /// @brief pointer to the back node of the linked list of
+  ///   nodes that we manage for the LQueue.
+  Node<T>* backNode;
 };
 
 #endif // define _LQUEUE_HPP_

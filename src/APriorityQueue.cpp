@@ -30,7 +30,40 @@ using namespace std;
 #define values AQueue<T>::values
 #define growQueueIfNeeded() AQueue<T>::growQueueIfNeeded()
 
-/** implement true modulo
+/**
+ * @brief Default constructor
+ *
+ * Construct an empty queue.  The empty queue will have no allocated memory
+ * nor any values.
+ */
+template<class T>
+APriorityQueue<T>::APriorityQueue()
+  : AQueue<T>()
+{
+}
+
+/**
+ * @brief Standard constructor
+ *
+ * Construct a queue of  values from a (statically) defined and
+ * provided array of values.  We simply allocate a block of memory
+ * dynamically large enough to hold the values, then copy the values
+ * from the input parameter into our own private array of values.
+ *
+ * @param initSize The size of the input values were are given as well as the
+ *   size of the new queue we are to construct.
+ * @param initValues The (static) array of values to use to construct
+ *   this Queue values with.
+ */
+template<class T>
+APriorityQueue<T>::APriorityQueue(int initSize, T initValues[])
+  : AQueue<T>(initSize, initValues)
+{
+}
+
+/**
+ * @brief Implement true modulo
+ *
  * Unfortunately the C/C++ `%` operation actually gives the remainder
  * instead of the true modulo value.  Modulo of a positive number should always
  * be a positive remainder.  Thus
@@ -58,33 +91,6 @@ int APriorityQueue<T>::modulo(int dividend, int divisor)
   }
 
   return remainder;
-}
-
-/** default constructor
- * Construct an empty queue.  The empty queue will have no allocated memory
- * nor any values.
- */
-template<class T>
-APriorityQueue<T>::APriorityQueue()
-  : AQueue<T>()
-{
-}
-
-/** standard constructor
- * Construct a queue of  values from a (statically) defined and
- * provided array of values.  We simply allocate a block of memory
- * dynamically large enough to hold the values, then copy the values
- * from the input parameter into our own private array of values.
- *
- * @param initSize The size of the input values were are given as well as the
- *   size of the new queue we are to construct.
- * @param initValues The (static) array of values to use to construct
- *   this Queue values with.
- */
-template<class T>
-APriorityQueue<T>::APriorityQueue(int initSize, T initValues[])
-  : AQueue<T>(initSize, initValues)
-{
 }
 
 /**

@@ -17,7 +17,9 @@
 #include <iostream>
 using namespace std;
 
-/** size accessor
+/**
+ * @brief Size accessor
+ *
  * Accessor method to get the current size of this Queue of values.
  *
  * @returns int Returns the current size of the queue of values.
@@ -28,7 +30,9 @@ int Queue<T>::getSize() const
   return size;
 }
 
-/** check if empty queue
+/**
+ * @brief Check if empty queue
+ *
  * Accessor method to test if the Queue is currently
  * empty or not.
  *
@@ -43,8 +47,8 @@ bool Queue<T>::isEmpty() const
   return size == 0;
 }
 
-/** Queue output operator
- *@brief overload output stream operator for Queue type.
+/**
+ * @brief Overload output stream operator for Queue type.
  *
  * Overload the output stream operator so that we can display current
  * values of a Queue on standard output.  We can define this in the

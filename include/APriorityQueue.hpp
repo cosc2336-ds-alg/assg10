@@ -33,15 +33,15 @@ using namespace std;
 template<class T>
 class APriorityQueue : public AQueue<T>
 {
-private:
-  int modulo(int index, int bufferSize);
-
 public:
   // constructors and destructors
   APriorityQueue();                             // default constructor
   APriorityQueue(int initSize, T initValues[]); // array based constructor
 
   // adding, accessing and removing values from the queue
+
+private:
+  int modulo(int index, int bufferSize);
 };
 
 #endif // define _APRIORITYQUEUE_HPP_

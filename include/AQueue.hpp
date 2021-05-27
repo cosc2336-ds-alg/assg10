@@ -37,6 +37,22 @@ using namespace std;
 template<class T>
 class AQueue : public Queue<T>
 {
+public:
+  // constructors and destructors
+  AQueue();                            // default constructor
+  AQueue(int size, T values[]);        // array based constructor
+  AQueue(const AQueue<T>& otherQueue); // copy constructor
+  ~AQueue();                           // destructor
+
+  // accessors and information methods
+  int getAllocationSize() const;
+  string str() const;
+  bool operator==(const Queue<T>& rhs) const;
+  T& operator[](int index) const;
+
+  // adding, accessing and removing values from the queue
+  void clear();
+
 protected:
   /// @brief private constant, initial allocation size for empty queues
   ///   to grow to
@@ -64,22 +80,6 @@ protected:
 
   // private member methods for managing the Queue internally
   void growQueueIfNeeded();
-
-public:
-  // constructors and destructors
-  AQueue();                            // default constructor
-  AQueue(int size, T values[]);        // array based constructor
-  AQueue(const AQueue<T>& otherQueue); // copy constructor
-  ~AQueue();                           // destructor
-
-  // accessors and information methods
-  int getAllocationSize() const;
-  string str() const;
-  bool operator==(const Queue<T>& rhs) const;
-  T& operator[](int index) const;
-
-  // adding, accessing and removing values from the queue
-  void clear();
 };
 
 #endif // define _AQUEUE_HPP_

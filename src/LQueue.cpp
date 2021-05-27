@@ -26,7 +26,9 @@
 #include <string>
 using namespace std;
 
-/** default constructor
+/**
+ * @brief Default constructor
+ *
  * Construct an empty queue.  The empty queue will have no allocated memory
  * nor any values.
  */
@@ -39,7 +41,9 @@ LQueue<T>::LQueue()
   backNode = nullptr;
 }
 
-/** standard constructor
+/**
+ * @brief Standard constructor
+ *
  * Construct a queue of values from a (statically) defined and
  * provided array of values.  We need to dynamically construct
  * a node for each value in the array and create a linked queue of these
@@ -67,7 +71,9 @@ LQueue<T>::LQueue(int size, T values[])
   }
 }
 
-/** copy constructor
+/**
+ * @brief Copy constructor
+ *
  * Provide a copy constructor for the Queue class.  A copy constructor
  * will be invoked whenver you assign one instance of a Queue to another.
  * For example
@@ -96,7 +102,9 @@ LQueue<T>::LQueue(const LQueue<T>& queue)
   }
 }
 
-/** destructor
+/**
+ * @brief Class destructor
+ *
  * Destructor for the Queue class.  A concrete Queue implementation must
  * provide a clear() method to clear all items and safely deallocate any
  * memory that the concrete instance is using.  Invoke the clear
@@ -110,7 +118,9 @@ LQueue<T>::~LQueue()
   clear();
 }
 
-/** access frontof queue
+/**
+ * @brief Access front of queue
+ *
  * Accessor method to get a copy of the item currently
  * at the front of this queue.
  *
@@ -139,7 +149,9 @@ T LQueue<T>::front() const
   return frontNode->value;
 }
 
-/** Queue to string
+/**
+ * @brief Queue to string
+ *
  * Accessor method to construct and return a string representation
  * of the current values and status of this Queue instance.
  *
@@ -181,7 +193,9 @@ string LQueue<T>::str() const
   return out.str();
 }
 
-/** boolean equals operator
+/**
+ * @brief Boolean equals operator
+ *
  * Check if this Queue is equal to the right hand side (rhs)
  * queue.  The queues are equal if their sizes are equal, and if
  * all elements in both queues are equal.
@@ -217,7 +231,9 @@ bool LQueue<T>::operator==(const Queue<T>& rhs) const
   return true;
 }
 
-/** indexing operator
+/**
+ * @brief Indexing operator
+ *
  * Provide a way to index individual values in our private
  * linked queue of values.  This allows code to, for the
  * most part, treated an instance of our Queue as if it were
@@ -261,7 +277,9 @@ T& LQueue<T>::operator[](int index) const
   return current->value;
 }
 
-/** clear out queue
+/**
+ * @brief Clear out queue
+ *
  * Clear or empty out the queue.  Return the queue back
  * to an empty queue.
  */
@@ -293,7 +311,9 @@ void LQueue<T>::clear()
   backNode = nullptr;
 }
 
-/** enqueue value on back of queue
+/**
+ * @brief Enqueue value on back of queue
+ *
  * Enqueue the value to the back of this Queue.
  *
  * @param value The value to enqueue on back of the current queue.
@@ -325,7 +345,9 @@ void LQueue<T>::enqueue(const T& value)
   this->size += 1;
 }
 
-/** dequeue queue front item
+/**
+ * @brief Dequeue queue front item
+ *
  * Dequeue the item from the front of the queue.  This operation is
  * O(1) constant time because we dequeue from the front of our singly
  * linked list.

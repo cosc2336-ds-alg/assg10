@@ -14,13 +14,14 @@
 #ifndef _NODE_HPP_
 #define _NODE_HPP_
 
-/** Node
+/** @class Node
  * @brief A simple Node structure type to be used to hold values
  *   in our linked list implemented of the List ADT.
  */
 template<class T>
 struct Node
 {
+public:
   /// @brief the actual date value of type T this node contains.
   T value;
 

@@ -1,4 +1,4 @@
-/** @file assg-tests-AQueue.cpp
+/** @file test-AQueue.cpp
  * @brief Unit tests for Assignment Queues
  *
  * @author Derek Harter

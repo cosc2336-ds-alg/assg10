@@ -17,7 +17,7 @@
 
 using namespace std;
 
-/** Job class
+/** @class Job
  * @brief Example Job class that defines a job with a priority
  *   and other attributes.
  *
@@ -38,6 +38,26 @@ using namespace std;
  */
 class Job
 {
+public:
+  Job();
+  Job(int priority, int serviceTime, int startTime, int id);
+
+  void setEndTime(int endTime);
+  int getId() const;
+  int getServiceTime() const;
+  int getPriority() const;
+  int getWaitTime() const;
+  int getCost() const;
+
+  bool operator==(const Job& rhs) const;
+  bool operator<(const Job& rhs) const;
+  bool operator>(const Job& rhs) const;
+  bool operator<=(const Job& rhs) const;
+  bool operator!=(const Job& rhs) const;
+
+  string str() const;
+  friend ostream& operator<<(ostream& out, const Job& aJob);
+
 private:
   /// @brief nextListId A static int variable, used to assign unique ids
   ///   when processes are created, for identification purposes.
@@ -63,26 +83,6 @@ private:
   ///    between endTime - startTime determines the total waitTime for this
   ///    process (calculated by getWaitTime() accessor method).
   int endTime;
-
-public:
-  Job();
-  Job(int priority, int serviceTime, int startTime, int id);
-
-  void setEndTime(int endTime);
-  int getId() const;
-  int getServiceTime() const;
-  int getPriority() const;
-  int getWaitTime() const;
-  int getCost() const;
-
-  bool operator==(const Job& rhs) const;
-  bool operator<(const Job& rhs) const;
-  bool operator>(const Job& rhs) const;
-  bool operator<=(const Job& rhs) const;
-  bool operator!=(const Job& rhs) const;
-
-  string str() const;
-  friend ostream& operator<<(ostream& out, const Job& aJob);
 };
 
 #endif // _JOB_HPP_
