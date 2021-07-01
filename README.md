@@ -121,15 +121,18 @@ the `backIndex` to the next location of the array where the new value
 will be inserted.  You can do the following:
 
 ```c++
-backIndex = (backIndex + 1) % size;
+backIndex = (backIndex + 1) % allocationSize;
 ```
+
+**NOTE**: be careful you are modding by the `allocationSize` and not the
+queue `size`.  Do you see why?
 
 This has the same effect as explicitly testing if we have gone past the end
 of the array
 
 ```c++
 backIndex++;
-if (backIndex >= size)
+if (backIndex >= allocationSize)
 {
   backIndex = 0;
 }
@@ -137,8 +140,8 @@ if (backIndex >= size)
 
 The second example may be clearer, but they both perform the same task.
 In the first case, if the new value of `(backIndex + 1)` is equal to
-the array `size`, the remainder of dividing by `size` will be 0, which
-will wrap the `backIndex` back around to 0 as desired.   Using modulo
+the array `allocationSize`, the remainder of dividing by `size` will be 0, which
+will wrap the `backIndex` back around to index 0 as desired.   Using modulo
 (remainder) arithmetic for circular buffer indexing is common and you will
 see it done this way often if you look at other code using an array
 as a circular buffer.
@@ -221,7 +224,7 @@ using and adding code to for this assignment.
 | `src/Queue.cpp`                                    | Implementation file of common methods of the `Queue` base class                                                                     |
 | `src/APriorityQueue.cpp`                           | Implementation file for the `APriorityQueue` member functions that implement the concrete priority queue array based `Queue`        |
 | `src/LQueue.cpp`                                   | Implementation file for the `LQueue` member functions that implement the concrete linked list based `Queue`                         |
-| `src/LPriorityQueue.cpp`                           | Implementation file for the `LPriorityQueue` member functions that implement the concrete priority queueu linked list based `Queue` |
+| `src/LPriorityQueue.cpp`                           | Implementation file for the `LPriorityQueue` member functions that implement the concrete priority queue linked list based `Queue`  |
 
 
 This week you will mainly be working in the array based `AQueue` and `APriorityQueue`
@@ -456,17 +459,17 @@ Here are a couple of general hints and ideas:
    Notice that the correct index to wrap back around the circular
    buffer is `allocationSize - 1`.  The array of `values` always has
    `allocationSize` elements in the array.  So the last index of this
-   array is at `allocationSize - 1`. Also note that the modulo
-   operator/trick does not work in C/C++.  Unfortunately, the
-   `%` operator actually performs the remainder function in C/C++, so
-   if you do `-1 % 5` you will get a result of `-1`.  The true 
-   modulo operator should return a value from 0 to 4 for a modulus
-   of 5.  Many other languages (like Python, Scheme, Haskell) actually
-   will do this correctly, or have separate operators/functions for
-   remainder and true modulo.  You can explicitly test using an
-   `if` condition, as shown above.  Or you should find that there
-   is a member method named `modulo()` in the `APriorityClass` which
-   you could use to calculate the modulo.
+   array is at `allocationSize - 1` since arrays are indexed starting
+   at 0.  Also note that the modulo operator/trick does not work in
+   C/C++.  Unfortunately, the `%` operator actually performs the
+   remainder function in C/C++, so if you do `-1 % 5` you will get a
+   result of `-1`.  The true modulo operator should return a value
+   from 0 to 4 for a modulus of 5.  Many other languages (like Python,
+   Scheme, Haskell) actually will do this correctly, or have separate
+   operators/functions for remainder and true modulo.  You can
+   explicitly test using an `if` condition, as shown above.  Or you
+   should find that there is a member method named `modulo()` in the
+   `APriorityClass` which you could use to calculate the modulo.
 2. You need to be careful when testing that you stop when you find
    a value that is of greater priority or of **EQUAL** priority.  We test
    for this a bit in the test cases.  You can't really tell when
