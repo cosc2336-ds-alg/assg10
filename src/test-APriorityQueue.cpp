@@ -316,7 +316,7 @@ TEST_CASE("APriorityQueue enqueue<Job> Test APriorityQueue using Job items", "[t
   CHECK_FALSE(priorityQueue.isEmpty());
   CHECK(priorityQueue.getSize() == 4);
   CHECK(priorityQueue.str() ==
-        "<queue> size: 4 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority: 3)]:back");
+        "<queue> size: 4 front:[ (id: 2 priority: 10), (id: 3 priority: 7), (id: 1 priority: 5), (id: 4 priority: 3) ]:back");
   CHECK(priorityQueue.front().str() == "(id: 2 priority: 10)");
 
   priorityQueue.enqueue(Job(1, 2, 3, nextId++));
