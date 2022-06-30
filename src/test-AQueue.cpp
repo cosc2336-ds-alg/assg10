@@ -533,8 +533,8 @@ TEST_CASE("AQueue<string> test string queue concrete array implementation", "[ta
     CHECK(queue.getSize() == 11);
     CHECK(queue.getAllocationSize() == 20); // only for AQueue
     CHECK_FALSE(queue.isEmpty());
-    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, string-512,
-   string-729, string-1000, string-1331 ]:back");
+    CHECK(queue.str() == "<queue> size: 11 front:[ string-1, string-8, string-27, string-64, string-125, string-216, string-343, "
+                         "string-512, string-729, string-1000, string-1331 ]:back");
   }
 
   SECTION("test clear of queue")
