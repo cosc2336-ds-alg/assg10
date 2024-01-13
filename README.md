@@ -1,7 +1,7 @@
 ---
 title: 'Assignment Queues: Circular Array Buffers and Priority Queues'
 author: 'COSC 2336: Data Structures and Algorithms'
-date: 'Summer 2021'
+date: 'Spring 2024'
 ---
 
 \newcommand{\BigO}[1]{$\mathcal{O}(#1)$}
@@ -211,10 +211,10 @@ using and adding code to for this assignment.
 
 | File Name                                          | Description                                                                                                                         |
 |----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `src/test-AQueue.cpp`                              | Unit tests of the array based `AQueue` implementation of the `Queue` API                                                            |
-| `src/test-LQueue.cpp`                              | Unit tests of the link list based `LQueue` implementation of the `Queue` API                                                        |
-| `src/test-APriorityQueue.cpp`                      | Unit tests of the array based `APriorityQueue` implementation of the `Queue` API                                                    |
-| `src/test-LPriorityQueue.cpp`                      | Unit tests of the link list based `LPriorityQueue` implementation of the `Queue` API                                                |
+| `src/assg10-AQueue-tests.cpp`                      | Unit tests of the array based `AQueue` implementation of the `Queue` API                                                            |
+| `src/assg10-LQueue-tests.cpp`                      | Unit tests of the link list based `LQueue` implementation of the `Queue` API                                                        |
+| `src/assg10-APriorityQueue-tests.cpp`              | Unit tests of the array based `APriorityQueue` implementation of the `Queue` API                                                    |
+| `src/assg10-LPriorityQueue-tests.cpp`              | Unit tests of the link list based `LPriorityQueue` implementation of the `Queue` API                                                |
 | `include/Queue.hpp`                                | Header file of the ADT base `Queue` class that defines the `Queue` interface / abstraction                                          |
 | `include/AQueue.hpp`                               | Header file of the concrete array based implementation of the `Queue` abstract data type                                            |
 | `include/APriorityQueue.hpp`                       | Header file of the concrete array based implementation of a priority queue for the `Queue` abstract data type                       |
@@ -241,12 +241,12 @@ you have completed the following setup steps.
    assignment invitation link for 'Assignment Recursion' for our
    current class semester and section.
 2. Clone the repository using the SSH URL to your local class DevBox
-   development environment.
-3. Configure the project by running the `configure` script from a terminal.
-4. Confirm that the project builds and runs, though no tests will be
+   development environment. Make sure to open the cloned
+   folder and restart inside of the correct Dev Container.
+3. Confirm that the project builds and runs, though no tests will be
    defined or run initially.  If the project does not build on the first
    checkout, please inform the instructor.
-5. You should create the issue for Task 1 and/or for all tasks for the
+4. You should create the issue for Task 1 and/or for all tasks for the
    assignment now before beginning the first task.  On your GitHub
    account, go to issues, and create it/them from the issue templates
    for the assignment. Also make sure you link the issues to the
@@ -580,7 +580,7 @@ the new front node because it has a higher priority than any existing node, and 
 just insert this new node to become the new front of the linked list.
 
 For the priority queue, you actually don't really need the `backNode`
-member variable, since you will not be enqueing on the back of the list, but need to
+member variable, since you will not be enqueuing on the back of the list, but need to
 be inserting into the list at the correct priority position.  So for either approach
 1 or 2 you don't really need to worry if the `backNode` member variable is updated
 correctly or not, though you might want to still try and consider that in case in
