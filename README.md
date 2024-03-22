@@ -242,10 +242,11 @@ you have completed the following setup steps.
    current class semester and section.
 2. Clone the repository using the SSH URL to your local class DevBox
    development environment. Make sure to open the cloned
-   folder and restart inside of the correct Dev Container.
-3. Confirm that the project builds and runs, though no tests will be
-   defined or run initially.  If the project does not build on the first
-   checkout, please inform the instructor.
+   folder and restart inside of the Dev Container.
+3. Confirm that the project builds and runs, for this assignment some
+   tests will be initially defined and running when you clone this
+   project.  If the project does not build on the first checkout,
+   please inform the instructor.
 4. You should create the issue for Task 1 and/or for all tasks for the
    assignment now before beginning the first task.  On your GitHub
    account, go to issues, and create it/them from the issue templates
